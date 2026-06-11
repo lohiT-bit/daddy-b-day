@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Daddy</title>
+  <style>
+    .photo-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+    :root {
+      --gold: #ffd700;
+      --blush: #ffb6c1;
+      --rose: #e8365d;
+      --cream: #fff8f0;
+      --lavender: #e8d5f5;
+      --ink: #402236;
+      --warm: #ff8a7a;
+      --leaf: #5f9b73;
+      --shadow: 0 18px 40px rgba(111, 39, 67, .22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #261427;
+      color: var(--ink);
+      font-family: Nunito, Lato, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .phone {
+      position: relative;
+      width: min(100vw, 430px);
+      min-height: 100vh;
+      overflow: hidden;
+      background: var(--cream);
+      isolation: isolate;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, .18), 0 30px 80px rgba(0, 0, 0, .45);
+    }
+
+    .page {
+      display: none;
+      position: relative;
+      min-height: 100vh;
+      padding: 24px 18px 34px;
+      overflow: hidden;
+      animation: pageIn .7s cubic-bezier(.2, .8, .2, 1) both;
+    }
+
+    .page.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @keyframes pageIn {
+      from {
+        opacity: 0;
+        transform: translateY(28px) scale(.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .page-one {
+      justify-content: space-between;
+      background:
+        radial-gradient(circle at 20% 14%, rgba(255, 215, 0, .34), transparent 25%),
+        radial-gradient(circle at 82% 20%, rgba(255, 182, 193, .46), transparent 28%),
+        linear-gradient(158deg, #fff8f0 0%, #ffe1d5 42%, #fb9aad 100%);
+    }
+
+    .page-two {
+      gap: 18px;
+      background:
+        linear-gradient(rgba(255, 248, 240, .91), rgba(255, 232, 224, .93)),
+        repeating-linear-gradient(135deg, rgba(232, 54, 93, .08) 0 1px, transparent 1px 18px);
+    }
+
+    .page-three {
+      justify-content: flex-start;
+      gap: 18px;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255, 255, 255, .78), transparent 25%),
+        radial-gradient(circle at 82% 8%, rgba(255, 215, 0, .27), transparent 24%),
+        linear-gradient(160deg, var(--lavender) 0%, #ffd7df 48%, var(--cream) 100%);
+    }
+
+    .rose-frame {
+      pointer-events: none;
+      position: absolute;
+      inset: 10px;
+      border: 2px solid rgba(255, 215, 0, .55);
+      border-radius: 28px;
+      z-index: 2;
+      box-shadow: inset 0 0 22px rgba(255, 255, 255, .55);
+    }
+
+    .rose-frame::before,
+    .rose-frame::after {
+      content: "🌹  ♡  🌿  ♡  🌹";
+      position: absolute;
+      left: 50%;
+      width: 92%;
+      color: var(--rose);
+      font-size: 17px;
+      letter-spacing: 3px;
+      text-align: center;
+      transform: translateX(-50%);
+      text-shadow: 0 2px 5px rgba(255, 255, 255, .8);
+    }
+
+    .rose-frame::before {
+      top: -14px;
+    }
+
+    .rose-frame::after {
+      bottom: -14px;
+    }
+
+    .vine {
+      position: absolute;
+      top: 34px;
+      bottom: 34px;
+      width: 24px;
+      color: var(--leaf);
+      font-size: 18px;
+      line-height: 42px;
+      opacity: .9;
+      z-index: 2;
+    }
+
+    .vine.left {
+      left: 3px;
+    }
+
+    .vine.right {
+      right: 3px;
+      transform: scaleX(-1);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 4;
+      padding-top: 44px;
+      text-align: center;
+    }
+
+    h1,
+    h2,
+    .script,
+    .forever {
+      font-family: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(48px, 15vw, 70px);
+      line-height: .92;
+      font-weight: 900;
+      color: transparent;
+      background: linear-gradient(120deg, #b98200, var(--gold) 34%, #fff4a8 46%, #ff6f91 68%, var(--rose));
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: drop-shadow(0 5px 16px rgba(232, 54, 93, .32));
+      animation: glowText 2.6s ease-in-out infinite;
+    }
+
+    @keyframes glowText {
+      0%, 100% {
+        filter: drop-shadow(0 5px 16px rgba(232, 54, 93, .32));
+      }
+      50% {
+        filter: drop-shadow(0 0 22px rgba(255, 215, 0, .78));
+      }
+    }
+
+    .subtitle {
+      margin: 16px auto 0;
+      max-width: 310px;
+      color: #6c2d48;
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.35;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, .65);
+    }
+
+    .illustration {
+      position: relative;
+      z-index: 3;
+      width: min(92%, 360px);
+      height: auto;
+      filter: drop-shadow(0 18px 28px rgba(110, 49, 48, .22));
+    }
+
+    .dad-hero {
+      margin-top: 4px;
+    }
+
+    .next-btn,
+    .love-btn {
+      position: relative;
+      z-index: 7;
+      width: min(100%, 342px);
+      min-height: 58px;
+      border: 0;
+      border-radius: 999px;
+      color: #572033;
+      background: linear-gradient(135deg, var(--gold), #fff3a5 32%, var(--blush) 70%, #ff7d9d);
+      box-shadow: 0 12px 28px rgba(232, 54, 93, .28), 0 0 0 5px rgba(255, 255, 255, .3);
+      font-size: 18px;
+      font-weight: 950;
+      cursor: pointer;
+      animation: pulseButton 1.9s ease-in-out infinite, softBounce 2.6s ease-in-out infinite;
+    }
+
+    @keyframes pulseButton {
+      0%, 100% {
+        box-shadow: 0 12px 28px rgba(232, 54, 93, .28), 0 0 0 5px rgba(255, 255, 255, .3);
+      }
+      50% {
+        box-shadow: 0 15px 34px rgba(232, 54, 93, .42), 0 0 24px rgba(255, 215, 0, .78);
+      }
+    }
+
+    @keyframes softBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .rain {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      overflow: hidden;
+    }
+
+    .drop,
+    .float-heart {
+      position: absolute;
+      top: -40px;
+      font-size: var(--size, 20px);
+      opacity: .9;
+      animation: fall var(--speed, 7s) linear infinite;
+      animation-delay: var(--delay, 0s);
+      transform: translateX(var(--drift, 0));
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translate3d(var(--drift), -50px, 0) rotate(0deg);
+        opacity: 0;
+      }
+      10% { opacity: .95; }
+      100% {
+        transform: translate3d(calc(var(--drift) * -1), 112vh, 0) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .page-title {
+      position: relative;
+      z-index: 2;
+      margin: 12px 0 2px;
+      color: #7a2e47;
+      font-size: 34px;
+      line-height: 1.08;
+      text-align: center;
+      text-shadow: 0 2px 0 rgba(255, 255, 255, .72);
+    }
+
+    .memory-stack {
+      width: 100%;
+      display: grid;
+      gap: 17px;
+      justify-items: center;
+      z-index: 2;
+    }
+
+    .polaroid {
+      position: relative;
+      width: min(100%, 320px);
+      padding: 12px 12px 15px;
+      background: #fffdf8;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      transform: rotate(var(--tilt, -2deg));
+    }
+
+    .polaroid:nth-of-type(even) {
+      --tilt: 2deg;
+    }
+
+    .photo-placeholder {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 4 / 3;
+      border-radius: 6px;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255, 182, 193, .75), rgba(255, 215, 0, .42)),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, .38) 0 8px, transparent 8px 16px);
+      color: #8a3652;
+      font-size: 17px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .polaroid figcaption {
+      min-height: 26px;
+      margin-top: 10px;
+      border-bottom: 2px dotted rgba(232, 54, 93, .35);
+      color: #6e3148;
+      font-family: "Comic Sans MS", "Segoe Print", cursive;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .sticker {
+      position: absolute;
+      top: -9px;
+      right: -9px;
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--rose);
+      color: #fff;
+      box-shadow: 0 8px 16px rgba(232, 54, 93, .3);
+      transform: rotate(12deg);
+    }
+
+    .scene {
+      width: min(100%, 340px);
+      padding: 9px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .47);
+      box-shadow: 0 12px 30px rgba(103, 42, 72, .12);
+    }
+
+    .quote {
+      width: min(100%, 342px);
+      padding: 14px 16px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #fff, #fff0f4);
+      box-shadow: 0 10px 26px rgba(232, 54, 93, .12);
+      color: #74314a;
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-style: italic;
+      line-height: 1.42;
+      text-align: center;
+    }
+
+    .quote::before,
+    .quote::after {
+      color: var(--rose);
+      content: "♡";
+      padding: 0 6px;
+      font-style: normal;
+    }
+
+    .divider {
+      width: min(100%, 340px);
+      height: 24px;
+    }
+
+    .letter-wrap {
+      position: relative;
+      z-index: 2;
+      width: min(78%, 285px);
+      margin-top: 12px;
+    }
+
+    .envelope-heart {
+      transform-origin: 50% 52%;
+      animation: revealHeart 2.4s ease-in-out infinite;
+    }
+
+    .flap {
+      transform-origin: 50% 42%;
+      animation: openFlap 2.4s ease-in-out infinite;
+    }
+
+    @keyframes openFlap {
+      0%, 100% { transform: rotateX(0deg) translateY(0); }
+      45%, 70% { transform: rotateX(55deg) translateY(-7px); }
+    }
+
+    @keyframes revealHeart {
+      0%, 18%, 100% { transform: translateY(14px) scale(.7); opacity: .25; }
+      48%, 72% { transform: translateY(-10px) scale(1); opacity: 1; }
+    }
+
+    .message-card {
+      position: relative;
+      z-index: 3;
+      width: min(100%, 350px);
+      padding: 24px 20px 27px;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, transparent 12px, #fffef9 0) top left,
+        linear-gradient(-135deg, transparent 12px, #fffef9 0) top right,
+        linear-gradient(45deg, transparent 12px, #fffef9 0) bottom left,
+        linear-gradient(-45deg, transparent 12px, #fffef9 0) bottom right;
+      background-size: 51% 51%;
+      background-repeat: no-repeat;
+      box-shadow: var(--shadow);
+      color: #59314c;
+      font-family: "Segoe Print", "Comic Sans MS", cursive;
+      font-size: 17px;
+      line-height: 1.62;
+    }
+
+    .message-card::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px dashed rgba(232, 54, 93, .25);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    .wax {
+      position: absolute;
+      right: 18px;
+      bottom: -18px;
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 28%, #ff6f86, var(--rose) 56%, #a51f3b);
+      color: #ffe8ee;
+      font-size: 24px;
+      box-shadow: 0 10px 20px rgba(125, 19, 50, .28);
+    }
+
+    .forever {
+      position: relative;
+      z-index: 4;
+      margin: 0 0 4px;
+      color: #9a2d55;
+      font-size: 30px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .heart-row {
+      position: relative;
+      z-index: 4;
+      min-height: 30px;
+      font-size: 22px;
+      letter-spacing: 9px;
+      animation: rowDance 1.6s ease-in-out infinite;
+    }
+
+    @keyframes rowDance {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .ambient .float-heart {
+      top: auto;
+      bottom: -30px;
+      opacity: .45;
+      animation: floatUp var(--speed, 9s) ease-in-out infinite;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0) translateX(0) scale(.8); opacity: 0; }
+      20% { opacity: .5; }
+      to { transform: translateY(-110vh) translateX(var(--drift, 20px)) scale(1.2); opacity: 0; }
+    }
+
+    .burst {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      overflow: hidden;
+    }
+
+    .burst span {
+      position: absolute;
+      left: 50%;
+      bottom: 86px;
+      font-size: var(--size, 22px);
+      animation: burst 1.4s ease-out forwards;
+      transform: translate(-50%, 0);
+    }
+
+    @keyframes burst {
+      to {
+        transform: translate(calc(-50% + var(--x)), var(--y)) rotate(var(--r));
+        opacity: 0;
+      }
+    }
+
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="phone" aria-live="polite">
+    <section class="page page-one active" data-page="1">
+      <div class="rain" aria-hidden="true"></div>
+      <div class="rose-frame"></div>
+      <div class="vine left" aria-hidden="true">🌿<br>♡<br>🌹<br>♡<br>🌿<br>♡<br>🌹</div>
+      <div class="vine right" aria-hidden="true">🌿<br>♡<br>🌹<br>♡<br>🌿<br>♡<br>🌹</div>
+
+      <div class="hero-copy">
+        <h1>Happy Birthday, Daddy 🎂</h1>
+        <p class="subtitle">The man who is my whole world</p>
+      </div>
+
+      <svg class="illustration dad-hero" viewBox="0 0 360 330" role="img" aria-label="A daughter hugging her laughing father from behind">
+        <defs>
+          <linearGradient id="sunset" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#ffd56a"/>
+            <stop offset=".55" stop-color="#ff9c8c"/>
+            <stop offset="1" stop-color="#e8365d"/>
+          </linearGradient>
+        </defs>
+        <circle cx="180" cy="136" r="126" fill="url(#sunset)" opacity=".72"/>
+        <path d="M58 258c44-44 196-43 246 0 12 10 6 26-10 26H69c-16 0-22-16-11-26z" fill="#fff5e7" opacity=".75"/>
+        <path d="M131 143c-8-26 10-64 45-67 36-3 61 23 58 63-1 20-15 42-26 50h-58c-9-10-15-25-19-46z" fill="#3b2535"/>
+        <circle cx="181" cy="142" r="55" fill="#d88a61"/>
+        <path d="M142 126c19-4 44-19 58-37 20 8 32 23 35 46 8-42-16-70-52-70-34 0-55 23-53 60 3 1 7 1 12 1z" fill="#3b2535"/>
+        <path d="M163 151c7 10 27 12 39 0" fill="none" stroke="#7e3c31" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="162" cy="133" r="4" fill="#402236"/>
+        <circle cx="203" cy="133" r="4" fill="#402236"/>
+        <path d="M115 262c5-42 27-73 67-73 44 0 65 31 70 73z" fill="#4a8fc6"/>
+        <path d="M116 230c-20 7-34 23-39 49" fill="none" stroke="#d88a61" stroke-width="18" stroke-linecap="round"/>
+        <path d="M247 230c21 8 35 23 40 49" fill="none" stroke="#d88a61" stroke-width="18" stroke-linecap="round"/>
+        <circle cx="113" cy="107" r="33" fill="#9b543d"/>
+        <path d="M80 107c-3-24 14-45 39-45 20 0 35 12 41 29-24-8-44-1-61 17z" fill="#5b3140"/>
+        <circle cx="116" cy="117" r="30" fill="#e6a17c"/>
+        <path d="M95 123c6 10 22 13 32 2" fill="none" stroke="#8a4a3b" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="105" cy="108" r="3" fill="#402236"/>
+        <circle cx="130" cy="108" r="3" fill="#402236"/>
+        <path d="M108 146c11 31 36 45 71 43" fill="none" stroke="#e6a17c" stroke-width="17" stroke-linecap="round"/>
+        <path d="M131 146c26 19 62 19 92 0" fill="none" stroke="#e6a17c" stroke-width="17" stroke-linecap="round"/>
+        <path d="M76 202c2-34 18-58 42-58 26 0 43 24 47 60z" fill="#ff7d9d"/>
+        <path d="M90 176c-24 25-29 56-18 85" fill="none" stroke="#e6a17c" stroke-width="14" stroke-linecap="round"/>
+        <path d="M150 177c17 16 24 36 22 61" fill="none" stroke="#e6a17c" stroke-width="14" stroke-linecap="round"/>
+        <path d="M96 211c32 21 70 18 102 2" fill="none" stroke="#e6a17c" stroke-width="12" stroke-linecap="round"/>
+        <path d="M55 248c30 18 60 28 103 29 57 2 114-14 146-38" fill="none" stroke="#ffd700" stroke-width="6" stroke-linecap="round" opacity=".75"/>
+      </svg>
+
+      <button class="next-btn" type="button" data-next="2">Next →</button>
+    </section>
+
+    <section class="page page-two" data-page="2">
+      <h2 class="page-title script">Our Beautiful Memories Together 💛</h2>
+      <div class="memory-stack">
+        <figure class="polaroid">
+          <span class="sticker">♥</span>
+          <img class="photo-img" src="1.jpeg" alt="Daddy and me">
+          <figcaption>Our sweetest laugh</figcaption>
+        </figure>
+
+        <div class="quote">A daughter's first hero is her father</div>
+        <svg class="scene" viewBox="0 0 330 160" role="img" aria-label="Father and daughter cooking together in a cozy kitchen">
+          <rect width="330" height="160" rx="18" fill="#fff3dc"/>
+          <rect x="20" y="20" width="290" height="88" rx="12" fill="#ffd9bd"/>
+          <rect x="33" y="32" width="58" height="38" rx="6" fill="#9fc8df"/>
+          <rect x="103" y="32" width="58" height="38" rx="6" fill="#f4a261"/>
+          <rect x="174" y="32" width="58" height="38" rx="6" fill="#88b783"/>
+          <circle cx="124" cy="88" r="20" fill="#d88a61"/>
+          <path d="M101 83c3-20 37-23 45 1-13-6-26-6-45-1z" fill="#3b2535"/>
+          <circle cx="210" cy="94" r="16" fill="#e6a17c"/>
+          <path d="M195 91c4-17 26-20 36 0-11-5-22-5-36 0z" fill="#5b3140"/>
+          <path d="M91 148c4-32 22-48 43-48 24 0 39 17 43 48z" fill="#4a8fc6"/>
+          <path d="M184 148c2-25 15-39 31-39 18 0 30 14 33 39z" fill="#ff7d9d"/>
+          <ellipse cx="164" cy="132" rx="48" ry="11" fill="#fff"/>
+          <circle cx="164" cy="128" r="13" fill="#ffd700"/>
+          <path d="M138 119c15 9 37 9 52 0" fill="none" stroke="#6e3148" stroke-width="4" stroke-linecap="round"/>
+          <path d="M144 115c-20 4-33 1-43-11M192 116c21 4 33 1 43-10" fill="none" stroke="#d88a61" stroke-width="8" stroke-linecap="round"/>
+        </svg>
+        <svg class="divider" viewBox="0 0 330 24" aria-hidden="true">
+          <path d="M8 12c30-20 54 20 84 0s54 20 84 0 54 20 84 0 54 20 62 2" fill="none" stroke="#e8365d" stroke-width="3" stroke-linecap="round"/>
+          <text x="153" y="18" fill="#e8365d" font-size="18">♥</text>
+        </svg>
+
+        <figure class="polaroid">
+          <span class="sticker">♥</span>
+          <img class="photo-img" src="2.jpeg" alt="My strenght">
+          <figcaption>You taught me brave</figcaption>
+        </figure>
+        <div class="quote">You taught me how to be brave</div>
+        <svg class="scene" viewBox="0 0 330 160" role="img" aria-label="Father and daughter flying a kite">
+          <rect width="330" height="160" rx="18" fill="#d9f0ff"/>
+          <circle cx="266" cy="32" r="22" fill="#ffd700"/>
+          <path d="M0 124c65-24 116 14 176-2 56-15 103-30 154-1v39H0z" fill="#94c973"/>
+          <path d="M244 30l39 24-28 35-39-24z" fill="#ff7d9d"/>
+          <path d="M244 30l11 59M216 65l67-11" stroke="#fff8f0" stroke-width="3"/>
+          <path d="M215 90c-28 28-62 18-83 38" fill="none" stroke="#7a5980" stroke-width="2" stroke-dasharray="5 5"/>
+          <circle cx="102" cy="82" r="20" fill="#d88a61"/>
+          <path d="M82 80c5-22 34-27 46-2-16-5-30-4-46 2z" fill="#3b2535"/>
+          <path d="M67 151c3-34 18-51 39-51 23 0 38 17 42 51z" fill="#4a8fc6"/>
+          <circle cx="158" cy="96" r="15" fill="#e6a17c"/>
+          <path d="M144 94c4-16 24-19 33 0-10-5-22-5-33 0z" fill="#5b3140"/>
+          <path d="M134 151c2-27 14-42 30-42 18 0 31 15 34 42z" fill="#ffd15f"/>
+          <path d="M128 105c14 10 27 12 43 4" fill="none" stroke="#d88a61" stroke-width="7" stroke-linecap="round"/>
+          <path d="M171 109c20-2 30-8 43-19" fill="none" stroke="#e6a17c" stroke-width="7" stroke-linecap="round"/>
+        </svg>
+
+        <figure class="polaroid">
+          <span class="sticker">♥</span>
+          <img class="photo-img" src="3.jpeg" alt="My favourite moment">
+          <figcaption>My safe place</figcaption>
+        </figure>
+        <div class="quote">My safe place has always been you</div>
+        <svg class="scene" viewBox="0 0 330 160" role="img" aria-label="Father reading to his daughter">
+          <rect width="330" height="160" rx="18" fill="#2f274f"/>
+          <circle cx="278" cy="28" r="18" fill="#fff3a5"/>
+          <g fill="#fff8f0" opacity=".9">
+            <circle cx="42" cy="31" r="2"/><circle cx="77" cy="48" r="2"/><circle cx="191" cy="24" r="2"/><circle cx="230" cy="58" r="2"/><circle cx="299" cy="83" r="2"/>
+          </g>
+          <rect x="36" y="104" width="258" height="24" rx="12" fill="#ffb6c1"/>
+          <path d="M67 132h200v28H67z" fill="#d16e7c"/>
+          <circle cx="120" cy="77" r="22" fill="#d88a61"/>
+          <path d="M98 73c6-24 40-27 49 1-15-7-32-6-49-1z" fill="#3b2535"/>
+          <path d="M82 136c4-34 21-51 44-51 25 0 42 17 47 51z" fill="#4a8fc6"/>
+          <circle cx="199" cy="90" r="16" fill="#e6a17c"/>
+          <path d="M185 87c5-17 26-18 35 0-11-5-22-5-35 0z" fill="#5b3140"/>
+          <path d="M174 137c3-27 15-42 31-42 18 0 30 15 33 42z" fill="#ffd15f"/>
+          <path d="M145 112c17-15 40-15 57 0v29c-18-10-39-10-57 0z" fill="#fff8f0"/>
+          <path d="M174 109v32" stroke="#e8365d" stroke-width="2"/>
+        </svg>
+
+        <figure class="polaroid">
+          <span class="sticker">♥</span>
+          <img class="photo-img" src="4.jpeg" alt="Forever us">
+          <figcaption>More memories soon</figcaption>
+        </figure>
+      </div>
+
+      <button class="next-btn" type="button" data-next="3">Next →</button>
+    </section>
+
+    <section class="page page-three" data-page="3">
+      <div class="ambient" aria-hidden="true"></div>
+      <svg class="letter-wrap" viewBox="0 0 260 170" role="img" aria-label="Animated envelope opening with a heart">
+        <rect x="30" y="62" width="200" height="88" rx="12" fill="#fff8f0" stroke="#e8365d" stroke-width="3"/>
+        <path class="envelope-heart" d="M130 86c-10-18-42-10-38 15 3 22 38 38 38 38s35-16 38-38c4-25-28-33-38-15z" fill="#e8365d"/>
+        <path d="M34 66l96 65 96-65" fill="none" stroke="#ff9aaa" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="flap" d="M35 64l95-53 95 53-95 63z" fill="#ffd7df" stroke="#e8365d" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M30 150l76-55M230 150l-76-55" stroke="#e8365d" stroke-width="3" opacity=".45"/>
+      </svg>
+
+      <article class="message-card">
+        <p>Dear Daddy,</p>
+        <p>[Your personal message here]</p>
+        <p>Many more happy returns of the day Mr.jagannadh 😎. Love you sooooo much 💖.we are very blessed to have you as a father 🫂. we are really very lucky to have you as a father 💝.You are the unique one 💕. U means a lot for us😚😚. You are so jovial 😅noughty 😜 handsome 😎 and craziest father 🫪.If there is another life 🧬 we are heartfully wanted as to be your children.Thanks for your unconditional love 💕.The way u showing love on us 🖇️🎯 will never be replaceable with anyone 🫂.we are very veryyyy happy to have you in our life daddyyy 🫠🫠.We love you  forever ♾️. Always be happy💘.wishing you a successful growth in your life 💝.be happy 😊😘 and be safe 🫂.we will be always there for you 🫂♾️.once again happiest birthday daddy 🥳😍.We are there to celebrate ur every birthday  🥂 as much as possible for us ❤️🎉.
+love you nannnaaaa...💗👣🫀.</p>
+        <p>Happy birthday, my forever hero.</p>
+        <div class="wax">♥</div>
+      </article>
+
+      <svg class="illustration" viewBox="0 0 350 230" role="img" aria-label="A daughter holding a giant heart up to her father">
+        <ellipse cx="176" cy="207" rx="142" ry="17" fill="rgba(126, 49, 80, .16)"/>
+        <circle cx="111" cy="78" r="23" fill="#e6a17c"/>
+        <path d="M89 75c5-25 39-27 49 1-16-6-31-5-49-1z" fill="#5b3140"/>
+        <path d="M72 199c4-58 19-95 42-95 25 0 42 36 47 95z" fill="#ff7d9d"/>
+        <circle cx="238" cy="64" r="33" fill="#d88a61"/>
+        <path d="M205 61c7-34 53-38 68-1-22-8-42-8-68 1z" fill="#3b2535"/>
+        <path d="M187 200c4-66 25-105 54-105 33 0 53 38 59 105z" fill="#4a8fc6"/>
+        <path d="M151 83c-18-34-74-18-68 25 5 39 68 70 68 70s63-31 68-70c6-43-50-59-68-25z" fill="#e8365d"/>
+        <path d="M117 121c23 22 48 22 69 0" fill="none" stroke="#fff8f0" stroke-width="7" stroke-linecap="round" opacity=".78"/>
+        <path d="M130 145c18 13 34 13 49 0" fill="none" stroke="#fff8f0" stroke-width="5" stroke-linecap="round" opacity=".78"/>
+        <path d="M132 117c-19-8-34-6-47 10M188 117c16-8 30-6 43 9" fill="none" stroke="#e6a17c" stroke-width="10" stroke-linecap="round"/>
+        <path d="M210 115c-17 12-30 18-50 19M255 116c-18 14-36 19-58 20" fill="none" stroke="#d88a61" stroke-width="11" stroke-linecap="round"/>
+        <path d="M225 75c6 8 22 9 31 0M101 88c6 7 18 7 25 0" fill="none" stroke="#7e3c31" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+
+      <div class="heart-row" aria-hidden="true">💕 ✨ 💖 ✨ 💕</div>
+      <p class="forever">Forever Your Little Girl 💕</p>
+      <button class="love-btn" type="button">Send Love 💌</button>
+      <div class="burst" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <script>
+    const rain = document.querySelector(".rain");
+    const ambient = document.querySelector(".ambient");
+    const symbols = ["❤️", "✨", "🌸", "💛", "♡", "✦", "🌹"];
+
+    function addFalling(container, count, floating = false) {
+      for (let i = 0; i < count; i += 1) {
+        const span = document.createElement("span");
+        span.className = floating ? "float-heart" : "drop";
+        span.textContent = symbols[i % symbols.length];
+        span.style.left = `${Math.random() * 100}%`;
+        span.style.setProperty("--size", `${16 + Math.random() * 15}px`);
+        span.style.setProperty("--speed", `${5.8 + Math.random() * 6}s`);
+        span.style.setProperty("--delay", `${Math.random() * -9}s`);
+        span.style.setProperty("--drift", `${-38 + Math.random() * 76}px`);
+        container.appendChild(span);
+      }
+    }
+
+    addFalling(rain, 42);
+    addFalling(ambient, 22, true);
+
+    function showPage(pageNumber) {
+      document.querySelectorAll(".page").forEach((page) => {
+        page.classList.toggle("active", page.dataset.page === pageNumber);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.querySelectorAll("[data-next]").forEach((button) => {
+      button.addEventListener("click", () => showPage(button.dataset.next));
+    });
+
+    document.querySelector(".love-btn").addEventListener("click", () => {
+      const burst = document.querySelector(".burst");
+      burst.innerHTML = "";
+      const burstSymbols = ["💖", "💕", "✨", "🌸", "💛", "❤️"];
+      for (let i = 0; i < 44; i += 1) {
+        const bit = document.createElement("span");
+        bit.textContent = burstSymbols[i % burstSymbols.length];
+        const angle = (Math.PI * 2 * i) / 44;
+        const distance = 95 + Math.random() * 170;
+        bit.style.setProperty("--x", `${Math.cos(angle) * distance}px`);
+        bit.style.setProperty("--y", `${Math.sin(angle) * distance - 120}px`);
+        bit.style.setProperty("--r", `${Math.random() * 540 - 270}deg`);
+        bit.style.setProperty("--size", `${18 + Math.random() * 14}px`);
+        burst.appendChild(bit);
+      }
+    });
+  </script>
+</body>
+</html>
